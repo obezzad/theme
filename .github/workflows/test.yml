@@ -1,0 +1,32 @@
+name: test
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  tests:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node: [12, 14]
+        os: [ubuntu-18.04, ubuntu-20.04]
+
+    name: OS ${{ matrix.os }} - Node v${{ matrix.node }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Yarn install
+        run: yarn install
+
+      - name: Unit tests
+        run: yarn run test
+
+      - name: Stylelint
+        run: yarn run stylelint
