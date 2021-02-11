@@ -119,7 +119,7 @@ export default {
 				const response = await createRoadmap();
 
 				const url = response.data.roadmap.url;
-				this.$router.push(`/dashboard/roadmap/${url}/settings`);
+				this.$router.push(`/dashboard/roadmaps/${url}/settings`);
 			} catch (err) {
 				console.error(err);
 			}
