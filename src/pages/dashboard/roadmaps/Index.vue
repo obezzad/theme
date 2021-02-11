@@ -35,7 +35,7 @@
 					@end="initialiseSort"
 				>
 					<div
-						v-for="roadmap in roadmaps"
+						v-for="(roadmap, index) in roadmaps"
 						:key="roadmap.id"
 						class="table-row"
 					>
@@ -50,12 +50,42 @@
 								<eye-icon v-if="roadmap.display" />
 								<eye-off-icon v-else />
 							</div>
-							<router-link
-								:to="`/dashboard/roadmaps/${roadmap.url}/settings`"
-								class="table-data table-data-icon"
-							>
-								<settings-icon />
-							</router-link>
+							<dropdown-wrapper>
+								<template #toggle>
+									<div
+										class="table-data table-data-icon boards-table-icon-settings dropdown-menu-icon"
+									>
+										<more-icon />
+									</div>
+								</template>
+								<template #default="dropdown">
+									<dropdown v-if="dropdown.active">
+										<dropdown-item
+											@click="
+												$router.push(
+													`/dashboard/roadmaps/${roadmap.url}/settings`
+												)
+											"
+										>
+											<template #icon>
+												<settings-icon />
+											</template>
+											Settings
+										</dropdown-item>
+										<dropdown-spacer />
+										<dropdown-item
+											:disabled="deleteRoadmapPermissionDisabled"
+											class="color-danger"
+											@click="deleteRoadmap(roadmap.id, index)"
+										>
+											<template #icon>
+												<delete-icon />
+											</template>
+											Delete
+										</dropdown-item>
+									</dropdown>
+								</template>
+							</dropdown-wrapper>
 						</div>
 					</div>
 				</draggable>
@@ -70,6 +100,8 @@ import {
 	GripVertical as GripIcon,
 	Eye as EyeIcon,
 	EyeOff as EyeOffIcon,
+	MoreHorizontal as MoreIcon,
+	Trash2 as DeleteIcon,
 	Settings as SettingsIcon
 } from "lucide-vue";
 import draggable from "vuedraggable";
@@ -78,22 +110,33 @@ import draggable from "vuedraggable";
 import {
 	getAllRoadmaps,
 	createRoadmap,
-	sortRoadmap
+	sortRoadmap,
+	deleteRoadmap
 } from "../../../modules/roadmaps";
 
 // components
 import Button from "../../../components/Button";
+import DropdownWrapper from "../../../components/dropdown/DropdownWrapper";
+import Dropdown from "../../../components/dropdown/Dropdown";
+import DropdownItem from "../../../components/dropdown/DropdownItem";
+import DropdownSpacer from "../../../components/dropdown/DropdownSpacer";
 
 export default {
 	name: "Roadmaps",
 	components: {
 		draggable,
 		Button,
+		DropdownWrapper,
+		Dropdown,
+		DropdownItem,
+		DropdownSpacer,
 
 		// icons
 		GripIcon,
 		EyeIcon,
 		EyeOffIcon,
+		MoreIcon,
+		DeleteIcon,
 		SettingsIcon
 	},
 	data() {
@@ -107,6 +150,11 @@ export default {
 		createRoadmapButtonDisabled() {
 			const permissions = this.$store.getters["user/getPermissions"];
 			const checkPermission = permissions.includes("roadmap:create");
+			return !checkPermission;
+		},
+		deleteRoadmapPermissionDisabled() {
+			const permissions = this.$store.getters["user/getPermissions"];
+			const checkPermission = permissions.includes("roadmap:destroy");
 			return !checkPermission;
 		}
 	},
@@ -156,6 +204,18 @@ export default {
 				this.roadmaps = response.data.roadmaps;
 			} catch (err) {
 				console.error(err);
+			}
+		},
+		async deleteRoadmap(id, index) {
+			try {
+				const response = await deleteRoadmap(id);
+
+				if (response.status === 204) {
+					this.roadmaps.splice(index, 1);
+					console.log(`[Dashboard] Delete roadmap (${id})`);
+				}
+			} catch (error) {
+				console.error(error);
 			}
 		}
 	},

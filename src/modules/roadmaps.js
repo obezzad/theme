@@ -120,3 +120,25 @@ export const sortRoadmap = async ({ from, to }) => {
 		}
 	});
 };
+
+/**
+ * delete roadmap
+ *
+ * @param {string} id roadmap id
+ *
+ * @returns {object} response
+ */
+export const deleteRoadmap = async id => {
+	const token = store.getters["user/getAuthToken"];
+
+	return await axios({
+		method: "DELETE",
+		url: "/api/v1/roadmaps",
+		data: {
+			id
+		},
+		headers: {
+			Authorization: `Bearer ${token}`
+		}
+	});
+};
