@@ -2,7 +2,10 @@
 	<div
 		class="post-voters"
 		data-test="vote"
-		:class="[disabled ? 'post-voters-disabled' : '']"
+		:class="[
+			loading ? 'post-voters-loading' : '',
+			disabled ? 'post-voters-disabled' : ''
+		]"
 		@click="changeVote"
 	>
 		<arrow-icon
