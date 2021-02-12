@@ -180,29 +180,44 @@ const routes = [
 		]
 	},
 	{
-		path: "/login",
-		name: "Login",
-		component: require("./pages/Login").default
-	},
-	{
-		path: "/join",
-		name: "Join",
-		component: require("./pages/Join").default
-	},
-	{
-		path: "/email-verify",
-		name: "Email verification",
-		component: require("./pages/EmailVerify").default
-	},
-	{
-		path: "/password-reset",
-		name: "Password reset",
-		component: require("./pages/passwordReset/Index").default
-	},
-	{
-		path: "/password-reset/confirm",
-		name: "Set new password",
-		component: require("./pages/passwordReset/Confirm").default
+		path: "/",
+		component: require("./layout/Bare").default,
+		beforeEnter: (to, from, next) => {
+			const user = JSON.parse(localStorage.getItem("user"));
+
+			if (user) {
+				return next({ name: "Home" });
+			}
+
+			next();
+		},
+		children: [
+			{
+				path: "login",
+				name: "Login",
+				component: require("./pages/Login").default
+			},
+			{
+				path: "join",
+				name: "Join",
+				component: require("./pages/Join").default
+			},
+			{
+				path: "email-verify",
+				name: "Email verification",
+				component: require("./pages/EmailVerify").default
+			},
+			{
+				path: "password-reset",
+				name: "Password reset",
+				component: require("./pages/passwordReset/Index").default
+			},
+			{
+				path: "password-reset/confirm",
+				name: "Set new password",
+				component: require("./pages/passwordReset/Confirm").default
+			}
+		]
 	},
 	{
 		path: "*",
