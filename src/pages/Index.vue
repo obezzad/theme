@@ -5,7 +5,6 @@
 				v-for="post in posts"
 				:key="post.postId"
 				:post="post"
-				:dashboard="true"
 			/>
 			<infinite-loading @infinite="getBoardPosts">
 				<div slot="spinner" class="loader-container">
