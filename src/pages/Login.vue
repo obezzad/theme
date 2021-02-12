@@ -1,20 +1,8 @@
 <template>
-	<div class="auth-form">
-		<div class="auth-form-header">
-			<router-link to="/" class="auth-form-logo site-info">
-				<img
-					class="site-logo"
-					:src="getSiteSittings.logo"
-					:alt="getSiteSittings.title"
-				>
-				<h5 class="site-name">
-					{{ getSiteSittings.title }}
-				</h5>
-			</router-link>
-			<h3 class="auth-form-heading">
-				Welcome back!
-			</h3>
-		</div>
+	<div>
+		<h3 class="auth-form-heading">
+			Welcome back!
+		</h3>
 		<div class="card">
 			<l-text
 				v-model="email.value"
@@ -95,12 +83,6 @@ export default {
 	computed: {
 		getSiteSittings() {
 			return this.$store.getters["settings/get"];
-		}
-	},
-	created() {
-		const user = JSON.parse(localStorage.getItem("user"));
-		if (user) {
-			this.$router.push("/");
 		}
 	},
 	methods: {

@@ -1,20 +1,8 @@
 <template>
-	<div class="auth-form">
-		<div class="auth-form-header">
-			<router-link to="/" class="auth-form-logo site-info">
-				<img
-					class="site-logo"
-					:src="getSiteSittings.logo"
-					:alt="getSiteSittings.title"
-				>
-				<h5 class="site-name">
-					{{ getSiteSittings.title }}
-				</h5>
-			</router-link>
-			<h3 class="auth-form-heading">
-				Forget password
-			</h3>
-		</div>
+	<div>
+		<h3 class="auth-form-heading">
+			Forget password
+		</h3>
 		<server-error v-if="serverError" @close="serverError = false" />
 		<div v-if="!hideForm" class="card">
 			<l-text
