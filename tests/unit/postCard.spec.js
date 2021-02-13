@@ -1,9 +1,9 @@
-import moment from "vue-moment";
+import dayjs from "../../src/plugins/dayjs";
 import { createLocalVue, RouterLinkStub, shallowMount } from "@vue/test-utils";
 import PostCard from "../../src/components/post/PostCard";
 
 const localVue = createLocalVue();
-localVue.use(moment);
+localVue.use(dayjs);
 
 describe("post card", () => {
 	const wrapper = shallowMount(PostCard, {
