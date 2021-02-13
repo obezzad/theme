@@ -183,7 +183,7 @@ export default {
 				const response = await createBoard();
 
 				const url = response.data.board.url;
-				this.$router.push(`/dashboard/board/${url}/settings`);
+				this.$router.push(`/dashboard/boards/${url}/settings`);
 			} catch (err) {
 				console.error(err);
 			} finally {
