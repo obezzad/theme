@@ -25,11 +25,9 @@
 			>
 				{{ postData.roadmap.name }}
 			</p>
-			<p
-				data-test="post-description"
-				class="post-content-description"
-				v-html="sliceContentMarkdown"
-			/>
+			<p data-test="post-description" class="post-content-description">
+				{{ post.contentMarkdown | trim(120) }}
+			</p>
 			<board-badge
 				v-if="postData.board"
 				:show-board="showBoard"
@@ -73,12 +71,6 @@ export default {
 		};
 	},
 	computed: {
-		sliceContentMarkdown() {
-			return (
-				this.post.contentMarkdown.slice(0, 120) +
-				(this.post.contentMarkdown.length > 120 ? "..." : "")
-			);
-		},
 		dashboardUrl() {
 			return this.dashboard ? "/dashboard" : "";
 		}

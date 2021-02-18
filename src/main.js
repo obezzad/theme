@@ -5,6 +5,7 @@ import moment from "vue-moment";
 import App from "./App.vue";
 import router from "./routes";
 import store from "./store";
+import "./filters";
 
 import "@/styles/main.sass";
 
