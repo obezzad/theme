@@ -46,7 +46,7 @@
 					data-test="post-card-description"
 					class="post-card-description"
 				>
-					{{ sliceContentMarkdown }}
+					{{ post.contentMarkdown | trim(120) }}
 				</p>
 			</div>
 		</div>
@@ -99,14 +99,6 @@ export default {
 			postData: this.post,
 			isExpanded: false
 		};
-	},
-	computed: {
-		sliceContentMarkdown() {
-			return (
-				this.post.contentMarkdown.slice(0, 120) +
-				(this.post.contentMarkdown.length > 120 ? "..." : "")
-			);
-		}
 	},
 	methods: {
 		updateVoters(voters) {

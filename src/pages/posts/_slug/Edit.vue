@@ -142,7 +142,7 @@ export default {
 			try {
 				const response = await updatePost(postData);
 
-				this.$router.push(`/post/${response.data.post.slug}`);
+				this.$router.push(`/posts/${response.data.post.slug}`);
 			} catch (error) {
 				console.log(error);
 			} finally {
