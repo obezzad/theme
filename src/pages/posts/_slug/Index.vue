@@ -28,10 +28,10 @@
 						</div>
 						<time
 							:datetime="post.createdAt"
-							:title="post.createdAt | moment('dddd, DD MMMM YYYY hh:mm:ss')"
+							:title="$date(post.createdAt).format('dddd, DD MMMM YYYY hh:mm')"
 							class="post-date"
 						>
-							{{ post.createdAt | moment("from") }}
+							{{ $date(post.createdAt).from() }}
 						</time>
 						<dropdown-wrapper v-if="postAuthor" class="viewpost__menu">
 							<template #toggle>

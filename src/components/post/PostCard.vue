@@ -24,10 +24,10 @@
 							v-else
 							data-test="post-date"
 							:datetime="post.createdAt"
-							:title="post.createdAt | moment('dddd, DD MMMM YYYY hh:mm')"
+							:title="$date(post.createdAt).format('dddd, DD MMMM YYYY hh:mm')"
 							class="post-date"
 						>
-							{{ post.createdAt | moment("from") }}
+							{{ $date(post.createdAt).from() }}
 						</time>
 					</div>
 					<div
