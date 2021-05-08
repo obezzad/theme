@@ -13,10 +13,6 @@ module.exports = {
 			2,
 			{
 				singleline: 2,
-				multiline: {
-					max: 1,
-					allowFirstLine: false
-				}
 			}
 		]
 	},
