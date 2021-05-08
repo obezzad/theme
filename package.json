@@ -15,6 +15,7 @@
 		"build": "vue-cli-service build",
 		"test": "jest --config ./jest.config.js",
 		"eslint:fix": "eslint --ext .vue,.js ./src --fix",
+		"prettier:format": "prettier --write './**/*.{vue,js}'",
 		"stylelint": "stylelint --syntax sass './src/styles/**/*.sass'"
 	},
 	"dependencies": {
@@ -44,6 +45,7 @@
 		"eslint-plugin-jest": "^24.3.6",
 		"eslint-plugin-vue": "^7.9.0",
 		"jest": "^26.6.3",
+		"prettier": "^2.2.1",
 		"stylelint": "^13.13.1",
 		"stylelint-scss": "^3.18.0",
 		"vue-jest": "^3.0.7",
