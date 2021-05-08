@@ -1,4 +1,4 @@
-const serverUrl = process.env.VUE_APP_SERVER_URL || `http://localhost:3000`;
+const serverUrl = process.env.VUE_APP_SERVER_URL || "http://localhost:3000";
 
 module.exports = {
   devServer: {
@@ -12,7 +12,7 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
-        additionalData: `@import "@/styles/variables.sass";`
+        additionalData: "@import \"@/styles/variables.sass\";"
       }
     }
   }

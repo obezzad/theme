@@ -8,6 +8,7 @@ module.exports = {
   plugins: ["vue"],
   extends: ["eslint:recommended", "plugin:vue/recommended"],
   rules: {
+    "quotes": [2, "double"],
     "semi": [1, "always"],
     "vue/html-indent": [1, 2],
     "indent": [1, 2],

@@ -221,7 +221,7 @@ export default {
   },
   metaInfo() {
     return {
-      title: `Boards · Dashboard`
+      title: "Boards · Dashboard"
     };
   }
 };

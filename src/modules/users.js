@@ -16,7 +16,7 @@ export const getUserSettings = async () => {
 
   return await axios({
     method: "GET",
-    url: `/api/v1/users/profile`,
+    url: "/api/v1/users/profile",
     headers: {
       Authorization: `Bearer ${token}`
     }
@@ -90,7 +90,7 @@ export const checkUserDashboardAccess = async () => {
 
   return await axios({
     method: "GET",
-    url: `/api/v1/users/dashboard`,
+    url: "/api/v1/users/dashboard",
     headers: {
       Authorization: `Bearer ${token}`
     }

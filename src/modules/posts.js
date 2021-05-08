@@ -78,7 +78,7 @@ export const getPostBySlug = async slug => {
 
   return await axios({
     method: "POST",
-    url: `/api/v1/posts/slug`,
+    url: "/api/v1/posts/slug",
     data: {
       slug,
       userId

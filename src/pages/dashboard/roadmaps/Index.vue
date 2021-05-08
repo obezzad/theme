@@ -221,7 +221,7 @@ export default {
   },
   metaInfo() {
     return {
-      title: `Roadmaps · Dashboard`
+      title: "Roadmaps · Dashboard"
     };
   }
 };
