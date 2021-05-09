@@ -1,3 +1,6 @@
+import { addDecorator } from '@storybook/vue';
+import centered from '@storybook/addon-centered/vue';
+
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
@@ -7,3 +10,5 @@ export const parameters = {
     },
   },
 }
+
+addDecorator(centered)
