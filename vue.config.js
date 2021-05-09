@@ -8,12 +8,5 @@ module.exports = {
         target: serverUrl
       }
     }
-  },
-  css: {
-    loaderOptions: {
-      sass: {
-        additionalData: "@import \"@/styles/variables.sass\""
-      }
-    }
   }
 };
