@@ -3,9 +3,9 @@ name: storybook
 on:
   push:
     paths:
-      - ./.github/workflows/storybook.yml
-      - ./package.json
-      - ./src/components/**
+      - .github/workflows/storybook.yml
+      - package.json
+      - src/components/**
   workflow_dispatch:
 
 jobs:
