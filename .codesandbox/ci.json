@@ -1,4 +1,7 @@
 {
   "sandboxes": ["new", "vanilla"],
+  "publishDirectory": {
+    "theme": "dist"
+  },
   "node": "12"
 }
