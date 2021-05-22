@@ -1,6 +1,6 @@
 <template>
   <div class="post">
-    <Vote
+    <vote
       :post-id="postData.postId"
       :votes-count="postData.voters.votesCount"
       :is-voted="postData.voters.viewerVote"

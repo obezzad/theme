@@ -3,7 +3,7 @@
     <div v-if="isPostExist" class="viewpost">
       <div class="viewpost__vote">
         <div>
-          <Vote
+          <vote
             :post-id="post.postId"
             :votes-count="post.voters.votesCount"
             :is-voted="post.voters.viewerVote"
