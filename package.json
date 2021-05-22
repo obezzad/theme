@@ -18,8 +18,8 @@
     "eslint:fix": "yarn eslint:check --fix",
     "prettier:format": "prettier --write .",
     "stylelint": "stylelint --syntax sass './src/styles/**/*.sass'",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook": "start-storybook -p 6006 --static-dir ./.storybook/static",
+    "build-storybook": "build-storybook --static-dir ./.storybook/static"
   },
   "dependencies": {
     "axios": "^0.21.1",
