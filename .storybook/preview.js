@@ -1,3 +1,7 @@
+import Vue from 'vue';
+import Vuex from 'vuex';
+
+import dayjs from "../src/plugins/dayjs";
 import "../src/filters";
 import "../src/styles/main.sass";
 
@@ -12,4 +16,5 @@ export const parameters = {
   },
 }
 
-addDecorator(centered)
+Vue.use(dayjs);
+Vue.use(Vuex);
