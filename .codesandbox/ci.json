@@ -1,4 +1,5 @@
 {
+  "packages": ["@lhci/cli@0.7.x"],
   "sandboxes": ["new", "vanilla"],
   "publishDirectory": {
     "theme": "dist"
