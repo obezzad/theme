@@ -27,6 +27,7 @@
     "unit-no-unknown": true,
     "unit-case": "lower",
     "string-no-newline": true,
-    "string-quotes": "double"
+    "string-quotes": "double",
+    "max-empty-lines": 2
   }
 }
