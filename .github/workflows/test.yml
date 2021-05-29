@@ -33,3 +33,6 @@ jobs:
 
       - name: Stylelint
         run: yarn run stylelint
+
+      - name: Build
+        run: yarn build
