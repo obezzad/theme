@@ -10449,10 +10449,10 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
-lucide-vue@^0.15.22:
-  version "0.15.22"
-  resolved "https://registry.yarnpkg.com/lucide-vue/-/lucide-vue-0.15.22.tgz#c90f3c574ebc91ccb21a1ec462902b528bfb170d"
-  integrity sha512-qILi8Sldxg0jMj4v7KLOB9E/iLwxUMnLGQFLFHUe0zHw6j3utwoYMu894sRhMHs0C+KMy81zBR6PRQYNLjbT+Q==
+lucide-vue@^0.15.25:
+  version "0.15.25"
+  resolved "https://registry.yarnpkg.com/lucide-vue/-/lucide-vue-0.15.25.tgz#f36790a5e7a75b04e1ab113e438d63fc6db6a064"
+  integrity sha512-61Vpc+3nXvcvsdHq+WIKrKMhg9Aak1/aLyzDRZCtGNfPFbaTAVdUwV6tKWHDV0RdZt6zJNl27UBysW6gs3Jz4Q==
 
 magic-string@^0.25.7:
   version "0.25.7"
