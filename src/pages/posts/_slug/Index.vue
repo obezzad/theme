@@ -56,7 +56,66 @@
           </div>
         </div>
       </div>
+
       <p v-html="post.contentMarkdown" />
+
+      <div v-if="showPostActivity" class="activity-section">
+        <div class="card">
+          <l-text
+            v-model="comment.value"
+            name="comment"
+            placeholder="Leave a comment"
+            @keyup-enter="submitComment"
+          />
+
+          <div style="display: flex; justify-content: flex-end;">
+            <Button
+              type="primary"
+              :loading="comment.buttonLoading"
+              :disabled="!comment.value"
+              @click="submitComment"
+            >
+              Submit
+            </Button>
+          </div>
+        </div>
+
+        <header class="activity-header">
+          <h6>activity</h6>
+
+          <!-- <div class="activity-sort">
+            <div
+              class="sort-option"
+              :class="{
+                'sort-option-active': activity.sort === 'desc'
+              }"
+              @click="activity.sort = 'desc'"
+            >
+              Newest
+            </div>
+            <div
+              class="sort-option"
+              :class="{
+                'sort-option-active': activity.sort === 'asc'
+              }"
+              @click="activity.sort = 'asc'"
+            >
+              Oldest
+            </div>
+          </div> -->
+        </header>
+
+        <div v-if="!activity.loading" class="activity-list">
+          <activity-item
+            v-for="item in activity.data"
+            :key="item.id"
+            :activity="item"
+          />
+        </div>
+        <div v-else class="loader-container">
+          <loader />
+        </div>
+      </div>
     </div>
     <p v-else>
       There is no such post.
@@ -72,7 +131,7 @@
 import { MoreHorizontal as MoreIcon, Edit2 as EditIcon } from "lucide-vue";
 
 // modules
-import { getPostBySlug } from "../../../modules/posts";
+import { getPostBySlug, addComment, postActivity } from "../../../modules/posts";
 
 // components
 import Loader from "../../../components/Loader";
@@ -81,6 +140,9 @@ import DropdownWrapper from "../../../components/dropdown/DropdownWrapper";
 import Dropdown from "../../../components/dropdown/Dropdown";
 import DropdownItem from "../../../components/dropdown/DropdownItem";
 import Avatar from "../../../components/Avatar";
+import LText from "../../../components/input/LText";
+import Button from "../../../components/Button";
+import ActivityItem from "../../../components/ActivityItem/ActivityItem";
 
 export default {
   name: "PostView",
@@ -92,6 +154,9 @@ export default {
     Dropdown,
     DropdownItem,
     Avatar,
+    LText,
+    Button,
+    ActivityItem,
 
     // icons
     MoreIcon,
@@ -102,7 +167,16 @@ export default {
       post: {
         loading: false
       },
-      isPostExist: true
+      isPostExist: true,
+      comment: {
+        value: "",
+        buttonLoading: false
+      },
+      activity: {
+        loading: false,
+        sort: "desc",
+        data: []
+      }
     };
   },
   computed: {
@@ -120,8 +194,19 @@ export default {
       if (!checkPermission && userId !== authorId) return false;
       return true;
     },
+    showPostActivity() {
+      return this.$store.getters["settings/labs"].comments;
+    },
     getSiteSittings() {
       return this.$store.getters["settings/get"];
+    }
+  },
+  watch: {
+    // Get post activity on changing sort
+    "activity.sort": {
+      handler(value) {
+        this.getPostActivity(value);
+      }
     }
   },
   created() {
@@ -136,12 +221,45 @@ export default {
         const response = await getPostBySlug(slug);
 
         this.post = response.data.post;
+        this.getPostActivity();
       } catch (error) {
         if (error.response.data.code === "POST_NOT_FOUND") {
           this.isPostExist = false;
         }
       } finally {
         this.post.loading = false;
+      }
+    },
+    async getPostActivity(sort = "desc") {
+      this.activity.loading = true;
+
+      try {
+        const response = await postActivity({
+          post_id: this.post.postId,
+          sort
+        });
+
+        this.activity.data = response.data.activity;
+      } catch (error) {
+        console.log(error);
+      } finally {
+        this.activity.loading = false;
+      }
+    },
+    async submitComment() {
+      if (!this.comment.value) return;
+
+      try {
+        const response = await addComment({
+          post_id: this.post.postId,
+          body: this.comment.value,
+          is_internal: false
+        });
+
+        this.comment.value = "";
+        this.activity.data.unshift(response.data.comment);
+      } catch (error) {
+        console.log(error);
       }
     },
     updateVoters(voters) {

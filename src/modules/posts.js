@@ -114,3 +114,43 @@ export const updatePost = async post => {
     }
   });
 };
+
+/**
+ * Get post activity
+ *
+ * @param {object} activity
+ * @param {string} post_id post UUID
+ * @param {string} sort sort type
+ */
+export const postActivity = async ({ post_id, sort }) => {
+  return await axios({
+    method: "GET",
+    url: `/api/v1/posts/${post_id}/activity`,
+    params: {
+      sort
+    }
+  });
+};
+
+/**
+ * Add comment to a post
+ *
+ * @param {object} comment
+ * @param {string} comment.body
+ * @param {string} comment.is_internal
+ */
+export const addComment = async ({ post_id, body, is_internal}) => {
+  const token = store.getters["user/getAuthToken"];
+
+  return await axios({
+    method: "POST",
+    url: `/api/v1/posts/${post_id}/comments`,
+    data: {
+      body,
+      is_internal
+    },
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+};
