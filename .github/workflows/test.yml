@@ -23,16 +23,16 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: Yarn install
-        run: yarn install
+        run: yarn --pure-lockfile
 
       - name: eslint:check
         run: yarn eslint:check
 
       - name: Unit tests
-        run: yarn run test
+        run: yarn test
 
       - name: Stylelint
-        run: yarn run stylelint
+        run: yarn stylelint
 
       - name: Build
         run: yarn build
