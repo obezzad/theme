@@ -7,3 +7,4 @@ updates:
       day: "friday"
       time: "06:00"
       timezone: "Asia/Calcutta"
+    open-pull-requests-limit: 10
