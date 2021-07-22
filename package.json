@@ -1,7 +1,7 @@
 {
   "name": "theme",
   "description": "The default theme for LogChimp",
-  "version": "0.1.0",
+  "version": "0.2.0-beta.0",
   "private": true,
   "repository": {
     "type": "git",
