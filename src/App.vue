@@ -46,13 +46,11 @@ export default {
     }
   },
   created() {
-    const settings = localStorage.getItem("settings");
+    // remove this code some point in future
+    // a fail-safe to fix the issue on existing LogChimp sites
+    localStorage.removeItem("settings");
 
-    if (settings) {
-      this.$store.dispatch("settings/update", JSON.parse(settings));
-    } else {
-      this.getSiteSettings();
-    }
+    this.getSiteSettings();
 
     // set google analytics
     if (this.getSiteSittings.googleAnalyticsId) {
