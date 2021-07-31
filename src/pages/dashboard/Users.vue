@@ -19,6 +19,7 @@
         <div class="table-header-item users-table-votes">
           votes
         </div>
+        <div v-if="isDeveloperMode" class="table-header-item users-table-votes" />
       </template>
       <div
         v-for="user in users"
@@ -39,6 +40,29 @@
         <div class="table-data users-table-votes">
           {{ user.votes }}
         </div>
+        <div v-if="isDeveloperMode" class="table-icon-group boards-table-icons">
+          <dropdown-wrapper>
+            <template #toggle>
+              <div
+                class="table-data table-data-icon boards-table-icon-settings dropdown-menu-icon"
+              >
+                <more-icon />
+              </div>
+            </template>
+            <template #default="dropdown">
+              <dropdown v-if="dropdown.active">
+                <dropdown-item
+                  @click="copyText(user.userId)"
+                >
+                  <template #icon>
+                    <copy-icon />
+                  </template>
+                  Copy ID
+                </dropdown-item>
+              </dropdown>
+            </template>
+          </dropdown-wrapper>
+        </div>
       </div>
       <infinite-loading @infinite="getUsers">
         <div slot="spinner" class="loader-container">
@@ -54,6 +78,10 @@
 
 <script>
 // packages
+import {
+  Clipboard as CopyIcon,
+  MoreHorizontal as MoreIcon
+} from "lucide-vue";
 import InfiniteLoading from "vue-infinite-loading";
 
 // modules
@@ -63,6 +91,9 @@ import { getAllUsers } from "../../modules/users";
 import Table from "../../components/Table";
 import Avatar from "../../components/Avatar";
 import Loader from "../../components/Loader";
+import DropdownWrapper from "../../components/dropdown/DropdownWrapper";
+import Dropdown from "../../components/dropdown/Dropdown";
+import DropdownItem from "../../components/dropdown/DropdownItem";
 
 export default {
   name: "DashboardUsers",
@@ -73,13 +104,25 @@ export default {
     // component
     Table,
     Avatar,
-    Loader
+    Loader,
+    DropdownWrapper,
+    Dropdown,
+    DropdownItem,
+
+    // icons
+    CopyIcon,
+    MoreIcon
   },
   data() {
     return {
       users: [],
       page: 1
     };
+  },
+  computed: {
+    isDeveloperMode() {
+      return this.$store.getters["settings/get"].developer_mode;
+    }
   },
   methods: {
     async getUsers($state) {
@@ -97,6 +140,9 @@ export default {
         $state.error();
         console.error(error);
       }
+    },
+    copyText(text) {
+      navigator.clipboard.writeText(text).then().catch(err => console.log(err));
     }
   },
   metaInfo() {

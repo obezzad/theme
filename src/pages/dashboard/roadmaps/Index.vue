@@ -72,6 +72,15 @@
                       </template>
                       Settings
                     </dropdown-item>
+                    <dropdown-item
+                      v-if="isDeveloperMode"
+                      @click="copyText(roadmap.id)"
+                    >
+                      <template #icon>
+                        <copy-icon />
+                      </template>
+                      Copy ID
+                    </dropdown-item>
                     <dropdown-spacer />
                     <dropdown-item
                       :disabled="deleteRoadmapPermissionDisabled"
@@ -101,6 +110,7 @@ import {
   Eye as EyeIcon,
   EyeOff as EyeOffIcon,
   MoreHorizontal as MoreIcon,
+  Clipboard as CopyIcon,
   Trash2 as DeleteIcon,
   Settings as SettingsIcon
 } from "lucide-vue";
@@ -136,6 +146,7 @@ export default {
     EyeIcon,
     EyeOffIcon,
     MoreIcon,
+    CopyIcon,
     DeleteIcon,
     SettingsIcon
   },
@@ -156,6 +167,9 @@ export default {
       const permissions = this.$store.getters["user/getPermissions"];
       const checkPermission = permissions.includes("roadmap:destroy");
       return !checkPermission;
+    },
+    isDeveloperMode() {
+      return this.$store.getters["settings/get"].developer_mode;
     }
   },
   created() {
@@ -217,6 +231,9 @@ export default {
       } catch (error) {
         console.error(error);
       }
+    },
+    copyText(text) {
+      navigator.clipboard.writeText(text).then().catch(err => console.log(err));
     }
   },
   metaInfo() {
