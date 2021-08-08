@@ -2,12 +2,11 @@ name: storybook
 
 on:
   push:
-    branches:
-      - main
     paths:
       - .github/workflows/storybook.yml
       - package.json
       - src/components/**
+  pull_request:
   workflow_dispatch:
 
 jobs:
