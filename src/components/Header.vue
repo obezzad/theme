@@ -22,7 +22,7 @@
               />
             </template>
             <template #default="dropdown">
-              <dropdown v-if="dropdown.active" class="nav-profile-dropdown">
+              <dropdown v-if="dropdown.active" class="nav-profile-dropdown sw">
                 <dropdown-item v-if="accessDashboard" @click="openDashboard">
                   <template #icon>
                     <dashboard-icon />

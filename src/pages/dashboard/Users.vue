@@ -50,7 +50,7 @@
               </div>
             </template>
             <template #default="dropdown">
-              <dropdown v-if="dropdown.active">
+              <dropdown v-if="dropdown.active" class="sw">
                 <dropdown-item
                   @click="copyText(user.userId)"
                 >

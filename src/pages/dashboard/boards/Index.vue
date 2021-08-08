@@ -67,7 +67,7 @@
               </div>
             </template>
             <template #default="dropdown">
-              <dropdown v-if="dropdown.active">
+              <dropdown v-if="dropdown.active" class="sw">
                 <dropdown-item
                   @click="
                     $router.push(`/dashboard/boards/${board.url}/settings`)
