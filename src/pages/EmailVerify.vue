@@ -1,16 +1,7 @@
 <template>
   <div class="auth-form">
     <div class="auth-form-header">
-      <router-link to="/" class="auth-form-logo site-info">
-        <img
-          class="site-logo"
-          :src="getSiteSittings.logo"
-          :alt="getSiteSittings.title"
-        >
-        <h5 class="site-name">
-          {{ getSiteSittings.title }}
-        </h5>
-      </router-link>
+      <site-branding />
     </div>
     <div v-if="success" class="card">
       <success-icon color="#64B285" />
@@ -41,12 +32,14 @@ import { verifyUserEmail } from "../modules/auth";
 
 // components
 import Loader from "../components/Loader";
+import SiteBranding from "../components/SiteBranding";
 
 export default {
   name: "EmailVerification",
   components: {
     // components
     Loader,
+    SiteBranding,
 
     // icons
     SuccessIcon,

@@ -1,16 +1,7 @@
 <template>
   <div class="auth-form">
     <div class="auth-form-header">
-      <router-link to="/" class="auth-form-logo site-info">
-        <img
-          class="site-logo"
-          :src="getSiteSittings.logo"
-          :alt="getSiteSittings.title"
-        >
-        <h5 class="site-name">
-          {{ getSiteSittings.title }}
-        </h5>
-      </router-link>
+      <site-branding />
       <h3 class="auth-form-heading">
         Forget password
       </h3>
@@ -62,6 +53,7 @@ import { requestPasswordReset } from "../../modules/auth";
 import ServerError from "../../components/serverError";
 import LText from "../../components/input/LText";
 import Button from "../../components/Button";
+import SiteBranding from "../../components/SiteBranding";
 
 export default {
   name: "ForgetPassword",
@@ -69,7 +61,8 @@ export default {
     // component
     LText,
     Button,
-    ServerError
+    ServerError,
+    SiteBranding
   },
   data() {
     return {

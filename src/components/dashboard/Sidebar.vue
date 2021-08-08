@@ -1,16 +1,7 @@
 <template>
   <div class="sidebar">
     <header>
-      <router-link to="/dashboard" class="site-info">
-        <img
-          class="site-logo"
-          :src="getSiteSittings.logo"
-          :alt="getSiteSittings.title"
-        >
-        <h5 class="site-name">
-          {{ getSiteSittings.title }}
-        </h5>
-      </router-link>
+      <site-branding :dashboard="true" />
     </header>
     <div class="sidebar-list">
       <h6>Manage</h6>
@@ -132,6 +123,7 @@ import {
 } from "lucide-vue";
 
 // components
+import SiteBranding from "../SiteBranding";
 import Avatar from "../Avatar";
 import DropdownWrapper from "../dropdown/DropdownWrapper";
 import Dropdown from "../dropdown/Dropdown";
@@ -145,6 +137,7 @@ export default {
   name: "DashboardSidebar",
   components: {
     // components
+    SiteBranding,
     Avatar,
     DropdownWrapper,
     Dropdown,

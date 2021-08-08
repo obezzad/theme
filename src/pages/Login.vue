@@ -1,16 +1,7 @@
 <template>
   <div class="auth-form">
     <div class="auth-form-header">
-      <router-link to="/" class="auth-form-logo site-info">
-        <img
-          class="site-logo"
-          :src="getSiteSittings.logo"
-          :alt="getSiteSittings.title"
-        >
-        <h5 class="site-name">
-          {{ getSiteSittings.title }}
-        </h5>
-      </router-link>
+      <site-branding />
       <h3 class="auth-form-heading">
         Welcome back!
       </h3>
@@ -67,13 +58,15 @@ import { signin } from "../modules/auth";
 // component
 import LText from "../components/input/LText";
 import Button from "../components/Button";
+import SiteBranding from "../components/SiteBranding";
 
 export default {
   name: "Login",
   components: {
     // component
     LText,
-    Button
+    Button,
+    SiteBranding
   },
   data() {
     return {

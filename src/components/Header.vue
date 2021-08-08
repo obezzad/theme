@@ -2,16 +2,7 @@
   <header class="header">
     <div class="container">
       <div class="header-container">
-        <router-link to="/" class="site-info">
-          <img
-            class="site-logo"
-            :src="getSiteSittings.logo"
-            :alt="getSiteSittings.title"
-          >
-          <h5 class="site-name">
-            {{ getSiteSittings.title }}
-          </h5>
-        </router-link>
+        <site-branding :dashboard="false" />
         <nav class="header-nav">
           <dropdown-wrapper v-if="isAuthenticated" class="nav-item">
             <template #toggle>
@@ -74,6 +65,7 @@ import {
 
 // components
 import Navbar from "./Navbar";
+import SiteBranding from "./SiteBranding";
 import DropdownWrapper from "./dropdown/DropdownWrapper";
 import Dropdown from "./dropdown/Dropdown";
 import DropdownItem from "./dropdown/DropdownItem";
@@ -86,6 +78,7 @@ export default {
   components: {
     // components
     Navbar,
+    SiteBranding,
     DropdownWrapper,
     Dropdown,
     DropdownItem,
