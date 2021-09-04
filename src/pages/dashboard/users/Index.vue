@@ -85,15 +85,15 @@ import {
 import InfiniteLoading from "vue-infinite-loading";
 
 // modules
-import { getAllUsers } from "../../modules/users";
+import { getAllUsers } from "../../../modules/users";
 
 // components
-import Table from "../../components/Table";
-import Avatar from "../../components/Avatar";
-import Loader from "../../components/Loader";
-import DropdownWrapper from "../../components/dropdown/DropdownWrapper";
-import Dropdown from "../../components/dropdown/Dropdown";
-import DropdownItem from "../../components/dropdown/DropdownItem";
+import Table from "../../../components/Table";
+import Avatar from "../../../components/Avatar";
+import Loader from "../../../components/Loader";
+import DropdownWrapper from "../../../components/dropdown/DropdownWrapper";
+import Dropdown from "../../../components/dropdown/Dropdown";
+import DropdownItem from "../../../components/dropdown/DropdownItem";
 
 export default {
   name: "DashboardUsers",
